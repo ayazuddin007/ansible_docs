@@ -1,0 +1,16 @@
+
+--- #My Target Section 
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+    
+    tasks:
+    - name: uninstall httpd server on amazon linux
+      action: yum name=httpd state=absent
+
+
+
+
+
+

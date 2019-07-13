@@ -1,0 +1,10 @@
+
+--- # Handler Section
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+  
+    tasks:
+      - name: uninstall httpd on amazon linux
+        action: yum name=httpd state=absent

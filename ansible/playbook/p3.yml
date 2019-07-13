@@ -1,0 +1,15 @@
+
+--- # Variables : Inclusion Types
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+
+    vars:
+      pkgname: httpd
+ 
+    tasks:
+      - name: install httpd on amazon linux
+        action: yum name="{{ pkgname }}"  state=installed
+ 
+               

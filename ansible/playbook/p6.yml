@@ -1,0 +1,17 @@
+
+--- # Conditionals
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: install apache on amazon linux
+        command: yum install httpd -y
+        when: ansible_facts['distribution'] == "Amazon"
+
+      - name: install apache on Debian
+        command: yum install apache2 -y
+        when: ansible_facts['distribution'] == "Debian"
+
+     
