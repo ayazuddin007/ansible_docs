@@ -1,0 +1,11 @@
+--- # task yml
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: Remove Httpd on Ansible Node
+        action: yum name=httpd state=absent
+
+

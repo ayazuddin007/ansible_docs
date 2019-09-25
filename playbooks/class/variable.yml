@@ -1,0 +1,12 @@
+--- # Variable yml
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+
+    vars:
+      pkgname: httpd
+
+    tasks:
+      - name: Install Httpd on Ansible Node
+        action: yum name={{ pkgname }}  state=installed   
