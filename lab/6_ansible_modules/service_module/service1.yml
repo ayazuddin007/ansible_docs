@@ -1,0 +1,14 @@
+--- # service.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+      - name: Start/stop httpd service on webserver1
+        service:
+                name: httpd
+                state: stopped
+

@@ -1,0 +1,19 @@
+--- # task_playbook.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    vars_files:
+      - variable.yml  
+
+    tasks:      
+      - name: Create task directory on webserver1
+        command: mkdir /tmp/task
+
+      - include: task.yml
+
+
+

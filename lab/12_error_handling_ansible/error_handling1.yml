@@ -1,0 +1,17 @@
+--- # error_polling1.yml
+  - hosts: webserver1,sqlserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:      
+      - name: First task  on webserver1
+        command: touch /tmp/task/task1.txt
+
+      - name: Second task on websever1
+        command: touch /tmp/task2.txt
+
+
+

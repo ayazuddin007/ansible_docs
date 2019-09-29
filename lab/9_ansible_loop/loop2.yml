@@ -1,0 +1,20 @@
+--- # loop2.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+      - name: Installing package on webserver1
+        yum: name={{item}}  state=absent
+        with_items:
+          - vsftpd
+          - tree
+
+
+  
+
+
+

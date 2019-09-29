@@ -1,0 +1,13 @@
+--- # playbook2.yml
+  - hosts: web_database_servers
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+       - name: Create a dummy file on web and database server
+         command: touch /tmp/ansible_dummy_webservers.txt
+
+  

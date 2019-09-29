@@ -1,0 +1,12 @@
+--- #script1.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+      - name: Create a dummy file on webserver1
+        script: testscript.sh Ayazuddin Khan  Creates=/tmp/test.txt 
+

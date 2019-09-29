@@ -1,0 +1,15 @@
+      - name: Task1 on webserver1
+        command: touch /tmp/task/{{ var1 }}.txt
+
+      - name: Task2 on webserver1
+        command: touch /tmp/task/{{ var2 }}.txt
+
+      - name: Task3 on webserver1
+        command: touch /tmp/task/{{ var3 }}.txt
+
+      - name: Task4 on webserver1
+        command: touch /tmp/task/{{ var4 }}.txt
+  
+
+
+

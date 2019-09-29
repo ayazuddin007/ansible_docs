@@ -1,0 +1,12 @@
+--- #lineInFile.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+      - name: Create a dummy file on webserver1
+        lineinfile: path=/tmp/test.txt line='ayaz'
+

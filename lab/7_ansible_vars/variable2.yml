@@ -1,0 +1,14 @@
+--- # variable2.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    vars:
+            servicename: httpd
+
+    tasks:
+      - name: Stop  {{ servicename }} service on websever1
+        service: name={{ servicename }} state=stopped

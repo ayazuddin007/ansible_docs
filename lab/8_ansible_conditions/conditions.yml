@@ -1,0 +1,35 @@
+--- # conditions.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    vars:
+            age: 15
+
+    tasks:
+      - name: Create file using variable on webserver1
+        command: touch /tmp/18.txt
+        when: age == 18
+
+      - name: Create file using variable on webserver1
+        command: touch /tmp/greater_than_18.txt
+        when: age > 18
+
+      - name: Create file using variable on webserver1
+        command: touch /tmp/less_than_10.txt
+        when: age <  10
+
+      - name: Create file using variable on webserver1
+        command: touch /tmp/between_10_and_18.txt
+        when: age > 10 and age < 18
+
+      - name: Create file using variable on webserver1
+        command: touch /tmp/10_or_11.txt
+        when: age == 10 or age == 11
+  
+
+
+

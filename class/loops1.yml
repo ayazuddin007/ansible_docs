@@ -1,0 +1,15 @@
+--- # loops yml
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: Remove a list of users on Ansible Node
+        user: name={{ item }} state=absent remove=yes
+        with_items:
+          - Raj
+          - Sai
+          - Hari
+
+

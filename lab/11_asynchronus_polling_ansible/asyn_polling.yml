@@ -1,0 +1,17 @@
+--- # asyn_polling.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:      
+      - name: Sleep for 30  sec on webserver
+        command: sleep 30
+
+      - name: second task
+        command: touch /tmp/second_task.txt
+
+
+

@@ -1,0 +1,12 @@
+--- #user1.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+      - name: Create a dummy file on webserver1
+        user: name="mytestUser" state="absent" remove=yes
+

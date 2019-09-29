@@ -1,0 +1,14 @@
+--- # conditionals yml
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: Install Httpd on Amazon Linux (Ansible Node)
+        command: yum install httpd -y
+        when: ansible_facts['distribution'] == "Amazon"
+
+      - name: Install Httpd on Ubuntu (Ansible Node)
+        command: apt-get install httpd -y
+        when: ansible_facts['distribution'] == "Ubuntu"

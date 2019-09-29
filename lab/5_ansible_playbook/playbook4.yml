@@ -1,0 +1,16 @@
+--- # playbook4.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+       - name: Create a dummy directory in  webserver1
+         command: mkdir /tmp/ansible_dummy_1
+
+       - name: Create a dummy file in  webserver1
+         command: touch /tmp/ansible_dummy_1/dummy_file_1.txt
+       
+  

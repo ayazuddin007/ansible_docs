@@ -1,0 +1,38 @@
+--- # apache_playbook.yml
+  - name: Installing Apache in Amazon Linux
+    hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: Apache Installation
+        yum: 
+          name: httpd 
+          state: latest
+
+      - name: Make file in /var/www/html
+        copy: 
+          content: Hello from ansible Node 
+          dest: /var/www/html/index.html
+
+      - name: Enable and Start the Apache Httpd Service
+        service: 
+          name: httpd 
+          state: started  
+          enabled: yes
+
+      - name: Check the website
+        uri:
+           url: http://13.126.112.174
+           body_format: raw
+           return_content: yes
+           method: GET
+        register: result
+
+      - name: Print result variable
+        debug:
+          var: result.content
+
+
+

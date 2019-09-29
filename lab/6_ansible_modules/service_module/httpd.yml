@@ -1,0 +1,12 @@
+--- # httpd.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+      - name: Install Httpd on Ansible Node
+        action: yum name=httpd state=installed
+

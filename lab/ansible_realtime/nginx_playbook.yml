@@ -1,0 +1,55 @@
+--- # nginx_playbook.yml
+  - name: Installing Nginx in Amazon Linux
+    hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: Remove Epel Release Rpm
+        command: yum remove -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+      - name: Remove Epel Release
+        command: yum remove -y epel-release
+
+      - name: Install Epel Release Rpm
+        command: yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+      - name: Install Epel Release
+        command: yum install -y epel-release
+
+      - name: Update Package 
+        command: yum update -y
+
+      - name: Install Nginx
+        command: yum install nginx -y
+                                     
+      - name: Start Nginx service
+        service:
+           name: nginx
+           state: started
+           enabled: yes
+
+      - name: Creating backup of index.html file
+        copy: src=/usr/share/nginx/html/index.html dest=/usr/share/nginx/html/index.html.bkp remote_src=yes
+
+      - name: Copy content in Nginx index.html
+        copy: content="Hi Ayazuddin" dest=/usr/share/nginx/html/index.html
+        
+      - name: Restart Nginx service
+        service:
+           name: nginx
+           state: restarted
+
+      - name: Check the website
+        uri:
+           url: http://13.233.158.33
+           body_format: raw
+           return_content: yes
+           method: GET
+        register: result
+
+      - name: Print result variable
+        debug:
+          var: result.content
+

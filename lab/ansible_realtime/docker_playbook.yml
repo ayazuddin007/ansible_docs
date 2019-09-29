@@ -1,0 +1,72 @@
+--- # docker_playbook.yml
+  - name:  Docker using  Ansible
+    hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      # Installing Docker Section
+
+      - name: 
+        debug:
+          msg: "-----Installing Docker Section Start-----"
+
+      - name: Remove Epel Release Rpm
+        command: yum remove -y epel-release-6-8.noarch.rpm
+
+      - name: Install Epel Release Rpm
+        command: wget  https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+      
+      - name: Install python
+        yum: name=python state=present
+
+      - name: Install python-pip
+        yum: name=python-pip  state=present
+
+      - name: Update Packages
+        command: yum update -y
+
+      - name: Install Docker
+        command: yum install docker docker-io -y 
+     
+      - name: Install docker-py
+        command: pip install docker-py
+
+      - name: Start Docker service
+        service:
+          name: docker
+          state: started
+          enabled: yes
+      
+      # Docker Image Section
+
+      - name:
+        debug:
+          msg: "-----Docker Image Section Start-----"
+
+      - name: Pulling httpd Image
+        docker_image:
+          name: httpd
+          source: pull
+      
+      # Docker Container Section
+
+      - name:
+        debug:
+          msg: "-----Docker Container Section Start-----"
+
+      - name: Creating docker container from httpd image
+        docker_container:
+          name: httpd-container
+          image: httpd
+          state: started
+          ports:
+          - "8080:80" 
+          tty: true
+          detach: true
+
+
+      
+       
+

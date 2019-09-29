@@ -1,0 +1,23 @@
+--- # playbook1.yml
+  - hosts: node1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play on webserver1
+
+    tasks:
+       - name: Create a dummy file on webserver1
+         command: touch /tmp/ansible_dummy.txt
+
+  - hosts: node2
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play on sqlserver1
+
+    tasks:
+      - name: Create a dummy file on sqlserver1
+        command: touch /tmp/ansible_dummy.txt 
+  

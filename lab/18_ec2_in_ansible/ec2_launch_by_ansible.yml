@@ -1,0 +1,29 @@
+--- # ec2_launch_by_ansible.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+      - name: Install pip package
+        command: yum install python-pip -y
+
+      - name: Install boto package
+        command: pip install boto --user
+
+      - name: Launching AWS EC2 instance 
+        ec2:
+            key_name: 
+            region: 
+            instance_type: 
+            image: 
+            group: 
+            vpc_subnet_id: 
+            assign_public_ip: yes
+            count_tag:
+                Name: Ansible-Node3
+            exact_count: 1
+            aws_access_key: 
+            aws_secret_key: 

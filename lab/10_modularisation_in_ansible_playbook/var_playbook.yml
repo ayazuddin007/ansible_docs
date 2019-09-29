@@ -1,0 +1,31 @@
+--- # variable_playbook.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    vars_files:
+      - variable.yml  
+
+    tasks:
+      - name: Create var directory on webserver1
+        command: mkdir /tmp/var
+
+
+      - name: Task1 on webserver1
+        command: touch /tmp/var/{{ var1 }}.txt
+
+      - name: Task2 on webserver1
+        command: touch /tmp/var/{{ var2 }}.txt
+
+      - name: Task3 on webserver1
+        command: touch /tmp/var/{{ var3 }}.txt
+
+      - name: Task4 on webserver1
+        command: touch /tmp/var/{{ var4 }}.txt
+  
+
+
+

@@ -1,0 +1,16 @@
+--- # csv/lookups.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    vars:
+      ansible_ssh_pass: "{{ lookup('csvfile', 'webserver1 file=credentials.csv delimiter=,')  }}"
+
+    tasks:      
+      - name: create a dummy file on webserver1
+        command: touch /tmp/csv_lookups.txt
+
+

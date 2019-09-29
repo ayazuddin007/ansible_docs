@@ -1,0 +1,17 @@
+--- # variable1.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    vars:
+            servicename: httpd
+
+    tasks:
+      - name: Install {{ servicename }} on webserver1
+        action: yum name={{ servicename }} state=installed
+
+      - name: Start {{ servicename }} service on websever1
+        service: name={{ servicename }} state=started

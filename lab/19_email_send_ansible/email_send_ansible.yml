@@ -1,0 +1,17 @@
+--- # email_send_ansible.yml
+  - name: Email send using Ansible
+    hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: Email sending using Ansible
+        mail:
+          host: smtp.gmail.com
+          port: 587
+          username: <Gmail ID>
+          password: <Gmail Password>
+          to: Username  <User email id>
+          subject: Ansible-Email 
+          body: Email Sent successfully with Ansible.

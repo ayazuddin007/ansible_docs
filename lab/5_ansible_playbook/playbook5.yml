@@ -1,0 +1,32 @@
+--- # playbook5.yml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    tasks:
+       - name: Create a file on  webserver1
+         command: touch /tmp/file_on_webserver1
+
+       - name: Copy hosts file in tmp directory on webserver1
+         command: cp /etc/hosts /tmp/myhosts
+
+
+  - hosts: sqlserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our second play
+
+    tasks:
+      - name: Create directory in tmp directory on sqlserver1
+        command: mkdir /tmp/mySecondPlayDir
+
+      - name: Create  file in mySecondPlayDir directory in tmp directory on sqlserver1
+        command: touch /tmp/mySecondPlayDir/SecondPlay.txt
+
+       
+  

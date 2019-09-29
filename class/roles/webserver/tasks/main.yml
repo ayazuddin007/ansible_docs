@@ -1,0 +1,7 @@
+---
+# tasks file for webserver
+- name: install httpd on amazon linux (Ansible Node)
+  action: yum name=httpd state=installed
+- name: Copy index.html file 
+  copy: src=files/index.html dest=/var/www/html  
+  notify: restart httpd

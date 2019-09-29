@@ -1,0 +1,22 @@
+
+
+node1  ansible_host=172.31.3.168
+node2  ansible_host=172.31.9.175
+node3  ansible_host=172.31.13.54
+
+[webserver1]
+node1
+
+[sqlserver1]
+node2
+
+[webservers]
+node1
+
+[databaseservers]
+node2
+
+[web_database_servers]
+node1
+node2
+

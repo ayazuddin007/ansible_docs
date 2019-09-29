@@ -1,0 +1,8 @@
+--- # Master playbok webserver role
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+  
+    roles:
+      - webserver 

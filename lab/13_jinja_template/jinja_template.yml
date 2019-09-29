@@ -1,0 +1,62 @@
+--- # jinja_templateyml
+  - hosts: webserver1
+    user: ansible
+    become: yes
+    connection: ssh
+
+    name: This is our first play
+
+    vars:
+      your_name: Ayaz
+
+      dummy_list:
+        - 1
+        - 10
+        - 20
+        - 30
+        - 10
+
+      dummy_list2:
+        - 30
+        - 40
+        - 10
+        - 50
+
+    tasks:      
+      - debug:
+          msg: "Hello World"
+
+      - debug:
+          msg: "Hello {{ your_name }}"
+
+      - debug:
+          msg: "Hello {{ your_name | upper }}"
+
+      - debug:
+          msg: "Hello {{ your_name | lower }}"
+
+      - debug:
+          msg: "Hello {{ your_name | replace('Ayaz','Ayazuddin') }}"
+
+      - debug:
+          msg: "{{ dummy_list | min }}"
+
+      - debug:
+          msg: "{{ dummy_list | max }}"
+
+      - debug:
+          msg: "{{ dummy_list | unique }}"
+
+      - debug:
+          msg: "{{ dummy_list | union(dummy_list2) }}"
+
+      - debug:
+          msg: "{{ dummy_list | intersect(dummy_list2) }}"
+
+      - debug:
+          msg: "{{ 100 | random }}"
+
+      - debug:
+          msg: "{{ '/etc/ansible/ansible.cfg' | basename }}"
+
+

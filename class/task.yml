@@ -1,0 +1,11 @@
+--- # task yml
+  - hosts: demo
+    user: ansible
+    become: yes
+    connection: ssh
+
+    tasks:
+      - name: Install Httpd on Ansible Node
+        action: yum name=httpd state=installed
+
+
